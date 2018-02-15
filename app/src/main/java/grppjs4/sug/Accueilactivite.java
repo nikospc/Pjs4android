@@ -1,12 +1,12 @@
 package grppjs4.sug;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
@@ -14,26 +14,22 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 
 
-public class Accueilactivite extends AppCompatActivity {
+public class Accueilactivite extends AppCompatActivity implements edt.OnFragmentInteractionListener,messagerie.OnFragmentInteractionListener,parametre.OnFragmentInteractionListener,accueil.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
     private SharedPreferences preflog;
@@ -44,20 +40,36 @@ public class Accueilactivite extends AppCompatActivity {
             = new  AHBottomNavigation.OnTabSelectedListener() {
         @Override
         public boolean onTabSelected(int position, boolean wasSelected) {
+            Fragment fragment = null;
+            Class fragmentClass = null;
             switch (position) {
                 case 0:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
+                    fragmentClass=accueil.class;
+                    //mTextMessage.setText(R.string.title_home);
+                    //  return true;
                 case 1:
-                    mTextMessage.setText(R.string.title_edt);
-                    return true;
+                    fragmentClass=edt.class;
+                    //mTextMessage.setText(R.string.title_edt);
+                    //return true;
                 case 2:
-                    mTextMessage.setText(R.string.title_messagerie);
-                    return true;
+                    fragmentClass=messagerie.class;
+                    //mTextMessage.setText(R.string.title_messagerie);
+                    //return true;
                 case 3:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
+                    fragmentClass=parametre.class;
+                    //mTextMessage.setText(R.string.title_home);
+                    //return true;
             }
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+            Log.d("dddd", "onTabSelected: ddd");
             return true;
         }
 
@@ -117,6 +129,21 @@ public class Accueilactivite extends AppCompatActivity {
         navigationAdapter.setupWithBottomNavigation(bottomNavigation);
         bottomNavigation.setOnTabSelectedListener(mOnNavigationItemSelectedListener);
         bottomNavigation.setOnNavigationPositionListener(mOnNPositionListener);
+
+        if(savedInstanceState==null){
+            Fragment fragment = null;
+            Class fragmentClass = null;
+            fragmentClass = accueil.class;
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+
+        }
 
 
         /*CalendarBuilder builder = new CalendarBuilder();
@@ -209,5 +236,9 @@ public class Accueilactivite extends AppCompatActivity {
             // Erreur : problème de lecture fichier
             Toast.makeText(getApplicationContext(), "Erreur : problème de lecture du fichier ics", Toast.LENGTH_LONG).show();
         }
+    }
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
