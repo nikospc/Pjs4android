@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">SUG</string>
+    <string name="title_activity_accueilactivite">Accueilactivite</string>
+    <string name="title_home">Home</string>
+    <string name="title_edt">EDT</string>
+    <string name="title_messagerie">Messages</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Identifiant</string>
+    <string name="prompt_password">Mot de Passe</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Se connecter</string>
+    <string name="error_invalid_email">Cette identifiant est mauvais</string>
+    <string name="error_invalid_password">Mot de passe trop court</string>
+    <string name="error_incorrect_password">Mot de passe incorect</string>
+    <string name="error_field_required">Ce champ est requis</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="deconexion">Déconnexion</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
