@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alamkanak.weekview.WeekView;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +28,12 @@ public class edt extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private static final int TYPE_DAY_VIEW = 1;
+    private static final int TYPE_THREE_DAY_VIEW = 2;
+    private static final int TYPE_WEEK_VIEW = 3;
+    private int mWeekViewType = TYPE_THREE_DAY_VIEW;
+    private WeekView mWeekView;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -58,6 +66,19 @@ public class edt extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        /*// Get a reference for the week view in the layout.
+        mWeekView = (WeekView) getView().findViewById(R.id.weekView);
+
+        // Show a toast message about the touched event.
+        mWeekView.setOnEventClickListener(mEventClickListener);
+
+        // The week view has infinite scrolling horizontally. We have to provide the events of a
+        // month every time the month changes on the week view.
+        mWeekView.setMonthChangeListener(mMonthChangeListener);
+
+        // Set long press listener for events.
+        mWeekView.setEventLongPressListener(mEventLongPressListener);
+    */
     }
 
     @Override

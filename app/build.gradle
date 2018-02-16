@@ -33,9 +33,5 @@ dependencies {
     compile 'net.steamcrafted:materialiconlib:1.1.4'
     compile 'com.aurelhubert:ahbottomnavigation:2.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    /* compile group: 'org.mnode.ical4j', name: 'ical4j', version: '2.1.5'
-    compile("org.slf4j:slf4j-jcl:1.7.25")
-    compile 'backport-util-concurrent:backport-util-concurrent:3.1'
-    compile 'commons-codec:commons-codec:1.8'
-    compile 'commons-lang:commons-lang:2.6'*/
+    compile 'com.github.alamkanak:android-week-view:1.2.6'
 }

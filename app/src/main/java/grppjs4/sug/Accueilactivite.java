@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alamkanak.weekview.WeekViewEvent;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
 
@@ -26,7 +27,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 
 public class Accueilactivite extends AppCompatActivity implements edt.OnFragmentInteractionListener,messagerie.OnFragmentInteractionListener,parametre.OnFragmentInteractionListener,accueil.OnFragmentInteractionListener {
@@ -46,19 +49,25 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
                 case 0:
                     fragmentClass=accueil.class;
                     //mTextMessage.setText(R.string.title_home);
-                    //  return true;
+                    break;
                 case 1:
                     fragmentClass=edt.class;
                     //mTextMessage.setText(R.string.title_edt);
                     //return true;
+                    break;
+
                 case 2:
                     fragmentClass=messagerie.class;
                     //mTextMessage.setText(R.string.title_messagerie);
                     //return true;
+                    break;
+
                 case 3:
                     fragmentClass=parametre.class;
                     //mTextMessage.setText(R.string.title_home);
                     //return true;
+                    break;
+
             }
             try {
                 fragment = (Fragment) fragmentClass.newInstance();
@@ -183,28 +192,51 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
 // Parcours le fichier ics et récupère les rendez-vous
         String ligne;
         String s="ii.ics";
+        List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+        Calendar cal = Calendar.getInstance();
+        WeekViewEvent w = new WeekViewEvent();
         try {
             // ouverture du fichier texte (.ics)
             File file = new File(getApplicationContext().getFilesDir(),s);
-
             BufferedReader planning = new BufferedReader(new FileReader(file));
             ligne = planning.readLine();
+            while(!ligne.equalsIgnoreCase("BEGIN:VEVENT")){
+                ligne=planning.readLine();
+                Log.i("ics", ligne);
+            }
+
             while (!ligne.equalsIgnoreCase("END:VCALENDAR") && ligne != null) {
+
                 if (ligne.equalsIgnoreCase("BEGIN:VEVENT")) {
                     // Rendez-vous à prendre en compte
                     ligne = planning.readLine();
                     Log.d("parc", ligne);
+                    ligne = planning.readLine();
+                    Log.i("b1", ligne);
                     while (!ligne.equalsIgnoreCase("END:VEVENT")) {
+
                         // récupération des informations utiles
-                        if (ligne.equalsIgnoreCase("DTSTART")) {
+                        if (ligne.contains("DTSTART:")) {
                             // date et heure de début du rendez-vous
+                            cal.set(Calendar.HOUR, Integer.parseInt(ligne.substring(18,19)));
+                            cal.set(Calendar.MINUTE, Integer.parseInt(ligne.substring(20,21)));
+                            cal.set(Calendar.SECOND, Integer.parseInt(ligne.substring(22,23)));
+                            w.setStartTime(cal);
+                            Log.i("date debut", w.getStartTime().toString());
 
                         }
-                        else if (ligne.equalsIgnoreCase("DTEND")) {
+                        else if (ligne.contains("DTEND:")) {
+                            cal.set(Calendar.HOUR, Integer.parseInt(ligne.substring(16,17)));
+                            cal.set(Calendar.MINUTE, Integer.parseInt(ligne.substring(18,19)));
+                            cal.set(Calendar.SECOND, Integer.parseInt(ligne.substring(20,21)));
+                            w.setEndTime(cal);
+                            Log.i("date debut", w.getEndTime().toString());
                             // date et heure de fin du rendez-vous
 
                         }
-                        else if (ligne.equalsIgnoreCase("LOCATION")) {
+                        else if (ligne.contains("LOCATION:")) {
+                            w.setLocation(ligne.substring(9));
+                            Log.i("lieu", w.getLocation());
                             // lieu du début du rendez-vous
 
                         }
@@ -216,11 +248,14 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
                             // description du rendez-vous (avec coordonnées PEQ)
 
                         }
-                        else if (ligne.equalsIgnoreCase("SUMMARY")) {
+                        else if (ligne.contains("SUMMARY:")) {
+                            w.setName(ligne.substring(8));
+                            Log.i("resume", w.getName());
                             // numéro de vol ou type de rendez-vous (hotel par exemple)
 
                         }
                         ligne = planning.readLine();
+
                     }
                     // traitement du rendez-vous : 1. mise en forme en fct des options, 2. création du rendez-vous dans l'agenda
 
