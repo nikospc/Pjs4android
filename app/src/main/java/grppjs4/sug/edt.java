@@ -295,7 +295,7 @@ public class edt extends Fragment implements WeekView.EventClickListener, MonthL
                     // traitement du rendez-vous : 1. mise en forme en fct des options, 2. création du rendez-vous dans l'agenda
                    // w=new WeekViewEvent(id,resume,location,startTime,endTime);
                     //w = new WeekViewEvent(0,"Pweb",2018,2,17,13,0,2018,2,17,16,30);
-                    w= new WeekViewEvent(id,resume+" "+location,anneed,moisd,jourd,heured,mind,anneef,moisf,jourf,heuref,minf);
+                    w= new WeekViewEvent(id,resume+" "+location,anneed,moisd,jourd,heured,mind,anneef,moisf,jourf,heuref,minf-1);
                     w.setColor(R.color.material_blue_grey_950);
                     events.add(w);
                     id++;

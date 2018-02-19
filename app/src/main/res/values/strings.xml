@@ -19,6 +19,10 @@
         completions."
     </string>
     <string name="deconexion">Déconnexion</string>
+    <string name="hint_email">Identifiant</string>
+    <string name="hint_password">Mot de passe</string>
+    <string name="btn_forgot_password">Oublie du mot de passe?</string>
+    <string name="btn_link_to_register">Pas encore membre? Inscrivez vous!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

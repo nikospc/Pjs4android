@@ -2,6 +2,7 @@ package grppjs4.sug;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -39,6 +40,7 @@ public class EDT extends AsyncTask<Void, Void, Boolean> {
     EDT(Context c) {
         ctx = c;
          file=new File(ctx.getFilesDir(),s);
+
 
     }
 

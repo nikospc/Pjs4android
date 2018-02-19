@@ -29,6 +29,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -38,7 +39,7 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
     private SharedPreferences preflog;
     private SharedPreferences.Editor editor;
     public static final String PREFS_NAME = "save";
-
+    private String s="ii.ics";
     private AHBottomNavigation.OnTabSelectedListener mOnNavigationItemSelectedListener
             = new  AHBottomNavigation.OnTabSelectedListener() {
         @Override
@@ -110,7 +111,6 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
             case R.id.refresh:
                 EDT edt=new EDT(getApplicationContext ());
                 edt.execute();
-                ParcoursICS();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -151,29 +151,12 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
 
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-
-        }
-
-
-        /*CalendarBuilder builder = new CalendarBuilder();
-       FileInputStream fin = null;
-        try {
-            File file=new File(getApplicationContext().getFilesDir(),"ii.ics");
-            fin = new FileInputStream(file);
-
-
-
-            try {
-                Calendar calendar = builder.build(fin);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ParserException e) {
-                e.printStackTrace();
+            File file = new File(getApplicationContext().getFilesDir(),s);
+            if(!file.exists()){
+                EDT edt=new EDT(getApplicationContext ());
+                edt.execute();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }*/
-
+        }
 
     }
 
@@ -188,90 +171,7 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
         startActivity(i);
     }
 
-    public void ParcoursICS() {
-// Parcours le fichier ics et récupère les rendez-vous
-        String ligne;
-        String s="ii.ics";
-        List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
-        Calendar cal = Calendar.getInstance();
-        WeekViewEvent w = new WeekViewEvent();
-        try {
-            // ouverture du fichier texte (.ics)
-            File file = new File(getApplicationContext().getFilesDir(),s);
-            BufferedReader planning = new BufferedReader(new FileReader(file));
-            ligne = planning.readLine();
-            while(!ligne.equalsIgnoreCase("BEGIN:VEVENT")){
-                ligne=planning.readLine();
-                Log.i("ics", ligne);
-            }
 
-            while (!ligne.equalsIgnoreCase("END:VCALENDAR") && ligne != null) {
-
-                if (ligne.equalsIgnoreCase("BEGIN:VEVENT")) {
-                    // Rendez-vous à prendre en compte
-                    ligne = planning.readLine();
-                    Log.d("parc", ligne);
-                    ligne = planning.readLine();
-                    Log.i("b1", ligne);
-                    while (!ligne.equalsIgnoreCase("END:VEVENT")) {
-
-                        // récupération des informations utiles
-                        if (ligne.contains("DTSTART:")) {
-                            // date et heure de début du rendez-vous
-                            cal.set(Calendar.HOUR, Integer.parseInt(ligne.substring(18,19)));
-                            cal.set(Calendar.MINUTE, Integer.parseInt(ligne.substring(20,21)));
-                            cal.set(Calendar.SECOND, Integer.parseInt(ligne.substring(22,23)));
-                            w.setStartTime(cal);
-                            Log.i("date debut", w.getStartTime().toString());
-
-                        }
-                        else if (ligne.contains("DTEND:")) {
-                            cal.set(Calendar.HOUR, Integer.parseInt(ligne.substring(16,17)));
-                            cal.set(Calendar.MINUTE, Integer.parseInt(ligne.substring(18,19)));
-                            cal.set(Calendar.SECOND, Integer.parseInt(ligne.substring(20,21)));
-                            w.setEndTime(cal);
-                            Log.i("date debut", w.getEndTime().toString());
-                            // date et heure de fin du rendez-vous
-
-                        }
-                        else if (ligne.contains("LOCATION:")) {
-                            w.setLocation(ligne.substring(9));
-                            Log.i("lieu", w.getLocation());
-                            // lieu du début du rendez-vous
-
-                        }
-                        else if (ligne.equalsIgnoreCase("DTSTAMP")) {
-                            // date et heure de création du planning (utile pour savoir s'il a été modifié)
-
-                        }
-                        else if (ligne.equalsIgnoreCase("DESCRIPTION")) {
-                            // description du rendez-vous (avec coordonnées PEQ)
-
-                        }
-                        else if (ligne.contains("SUMMARY:")) {
-                            w.setName(ligne.substring(8));
-                            Log.i("resume", w.getName());
-                            // numéro de vol ou type de rendez-vous (hotel par exemple)
-
-                        }
-                        ligne = planning.readLine();
-
-                    }
-                    // traitement du rendez-vous : 1. mise en forme en fct des options, 2. création du rendez-vous dans l'agenda
-
-                }
-                ligne = planning.readLine();
-            }
-
-        }
-        catch (FileNotFoundException e1) {
-            // Erreur : le fichier n'existe pas
-            Toast.makeText(getApplicationContext(), "Erreur : fichier ics inexistant", Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            // Erreur : problème de lecture fichier
-            Toast.makeText(getApplicationContext(), "Erreur : problème de lecture du fichier ics", Toast.LENGTH_LONG).show();
-        }
-    }
     @Override
     public void onFragmentInteraction(Uri uri) {
 

@@ -4,7 +4,7 @@
     <style name="AppBlankTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/grisclair</item>
-        <item name="colorPrimaryDark">@color/rougebordeaux</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="AppTheme" parent="AppBlankTheme">
