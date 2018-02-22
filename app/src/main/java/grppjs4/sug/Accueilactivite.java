@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
@@ -17,20 +16,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alamkanak.weekview.WeekViewEvent;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
 
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 
 public class Accueilactivite extends AppCompatActivity implements edt.OnFragmentInteractionListener,messagerie.OnFragmentInteractionListener,parametre.OnFragmentInteractionListener,accueil.OnFragmentInteractionListener {
@@ -109,8 +99,8 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
                deco();
                 return true;
             case R.id.refresh:
-                EDT edt=new EDT(getApplicationContext ());
-                edt.execute();
+                edtrequete edtrequete =new edtrequete(getApplicationContext ());
+                edtrequete.execute();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -153,7 +143,7 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
             fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
             File file = new File(getApplicationContext().getFilesDir(),s);
             if(!file.exists()){
-                EDT edt=new EDT(getApplicationContext ());
+                edtrequete edt =new edtrequete(getApplicationContext ());
                 edt.execute();
             }
         }

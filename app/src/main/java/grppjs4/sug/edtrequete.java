@@ -27,7 +27,7 @@ import okio.Okio;
 
 import static android.provider.Telephony.Mms.Part.FILENAME;
 
-public class EDT extends AsyncTask<Void, Void, Boolean> {
+public class edtrequete extends AsyncTask<Void, Void, Boolean> {
 
 
     Response response;
@@ -37,7 +37,7 @@ public class EDT extends AsyncTask<Void, Void, Boolean> {
     String s="ii.ics";
     File file;
 
-    EDT(Context c) {
+    edtrequete(Context c) {
         ctx = c;
          file=new File(ctx.getFilesDir(),s);
 

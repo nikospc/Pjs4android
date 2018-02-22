@@ -34,4 +34,4 @@ dependencies {
     compile 'com.aurelhubert:ahbottomnavigation:2.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.github.alamkanak:android-week-view:1.2.6'
-}
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.9'}
