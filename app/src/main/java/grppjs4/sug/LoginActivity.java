@@ -32,6 +32,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
@@ -340,7 +343,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         private final String mEmail;
         private final String mPassword;
-
+        private  String mdpcrypt;
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
@@ -355,12 +358,12 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             /*HttpUrl.Builder httpBuider = HttpUrl.parse(url).newBuilder();
             httpBuider.addQueryParameter("id", mEmail);
             Request request = new Request.Builder().url(httpBuider.build()).build();*/
-
+            mdpcrypt= new String(Hex.encodeHex(DigestUtils.sha1(mPassword)));
             // ICI ON FAIT DU POST
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("email", mEmail)
-                    .addFormDataPart("password",mPassword)
+                    .addFormDataPart("password",mdpcrypt)
                     .build();
 
             Request.Builder builder = new Request.Builder();
