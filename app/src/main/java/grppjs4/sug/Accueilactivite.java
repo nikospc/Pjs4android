@@ -30,6 +30,7 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
     private SharedPreferences.Editor editor;
     public static final String PREFS_NAME = "save";
     private String s="ii.ics";
+    String id="";
     private AHBottomNavigation.OnTabSelectedListener mOnNavigationItemSelectedListener
             = new  AHBottomNavigation.OnTabSelectedListener() {
         @Override
@@ -99,7 +100,7 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
                deco();
                 return true;
             case R.id.refresh:
-                edtrequete edtrequete =new edtrequete(getApplicationContext ());
+                edtrequete edtrequete =new edtrequete(getApplicationContext (),id);
                 edtrequete.execute();
                 return true;
         }
@@ -120,8 +121,8 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
 
         preflog=getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
         editor=preflog.edit();
-
         mTextMessage = (TextView) findViewById(R.id.message);
+        id=preflog.getString("id","");
 
         AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
         AHBottomNavigationAdapter navigationAdapter = new AHBottomNavigationAdapter(this, R.menu.navigation);
@@ -143,7 +144,7 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
             fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
             File file = new File(getApplicationContext().getFilesDir(),s);
             if(!file.exists()){
-                edtrequete edt =new edtrequete(getApplicationContext ());
+                edtrequete edt =new edtrequete(getApplicationContext (),id);
                 edt.execute();
             }
         }
@@ -156,6 +157,10 @@ public class Accueilactivite extends AppCompatActivity implements edt.OnFragment
         editor.putBoolean("islogin",false);
         editor.apply();
         editor.commit();
+        File file = new File(getApplicationContext().getFilesDir(),s);
+        if(file.exists()){
+            file.delete();
+        }
         this.finish();
         Intent i=new Intent(this,LoginActivity.class);
         startActivity(i);

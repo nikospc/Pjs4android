@@ -1,46 +1,34 @@
 package grppjs4.sug;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.File;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 
 import okhttp3.HttpUrl;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 import okio.BufferedSink;
-import okio.BufferedSource;
 import okio.Okio;
-
-import static android.provider.Telephony.Mms.Part.FILENAME;
 
 public class edtrequete extends AsyncTask<Void, Void, Boolean> {
 
 
     Response response;
     String url = "http://ent-ng.parisdescartes.fr/export/ics.php";
-    String id = "ii03208";
+    String id = "";
     Context ctx;
     String s="ii.ics";
     File file;
 
-    edtrequete(Context c) {
+    edtrequete(Context c, String id) {
         ctx = c;
          file=new File(ctx.getFilesDir(),s);
-
+         this.id=id;
 
     }
 
