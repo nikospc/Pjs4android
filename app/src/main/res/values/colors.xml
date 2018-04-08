@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimaryDark">#3F51B5</color>
-    <color name="colorPrimary">#90C5D6</color>
+    <color name="colorPrimary">#447DA2</color>
     <color name="colorAccent">#f0e6f5</color>
     <color name="grisclair">#EEEEEE</color>
     <color name="rougebordeaux">#A91101</color>
-
+    <color name="noir">#000000</color>
+    <color name="fondGris">#F7F5F5</color>
+    <color name="grisClair">#ADADAD</color>
+    <color name="fondMenu">#E6545353</color>
+    <color name="bleu">#B8CFED</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>

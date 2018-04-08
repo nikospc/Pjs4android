@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "989180019409",
+    "firebase_url": "https://pjs4tchat-ad90d.firebaseio.com",
+    "project_id": "pjs4tchat-ad90d",
+    "storage_bucket": "pjs4tchat-ad90d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989180019409:android:a9eaab5397610db5",
+        "android_client_info": {
+          "package_name": "com.example.otmane.pjs4tchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989180019409-eau2dfdn8b0u2ctu8bmkt926nr7dmcqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTNnprrE-6b8vWCS6IOUQSzwxxtuqI6XQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989180019409:android:bec5f92cb540cdec",
+        "android_client_info": {
+          "package_name": "grppjs4.sug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989180019409-eau2dfdn8b0u2ctu8bmkt926nr7dmcqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTNnprrE-6b8vWCS6IOUQSzwxxtuqI6XQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

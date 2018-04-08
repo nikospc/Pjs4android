@@ -219,7 +219,10 @@ public class edt extends Fragment implements WeekView.EventClickListener, MonthL
             Log.i("premiereligne", ligne);
             while(!ligne.equalsIgnoreCase("BEGIN:VEVENT")){
                 ligne=planning.readLine();
-                Log.i("lignesauté", ligne);
+                if(ligne.equalsIgnoreCase("END:VCALENDAR")){
+                    return events;
+                }
+//                Log.i("lignesauté", ligne);
             }
 
             while (!ligne.equalsIgnoreCase("END:VCALENDAR") && ligne != null) {
@@ -302,9 +305,9 @@ public class edt extends Fragment implements WeekView.EventClickListener, MonthL
                 }
                 ligne = planning.readLine();
             }
-            for(WeekViewEvent e:events){
+            /*for(WeekViewEvent e:events){
                 Log.i("events", e.toString());
-            }
+            }*/
         }
         catch (FileNotFoundException e1) {
             // Erreur : le fichier n'existe pas

@@ -19,11 +19,23 @@
         completions."
     </string>
     <string name="deconexion">Déconnexion</string>
-    <string name="hint_email">Identifiant</string>
+    <string name="hint_email">Email</string>
     <string name="hint_password">Mot de passe</string>
     <string name="btn_forgot_password">Oublie du mot de passe?</string>
     <string name="btn_link_to_register">Pas encore membre? Inscrivez vous!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_signup">Signup</string>
+    <string name="hint_prenom">Prénom</string>
+    <string name="hint_tel">tel</string>
+    <string name="hint_nom">nom</string>
+    <string name="hint_rayon">rayon</string>
+    <string name="titreInscription">Inscription</string>
+    <string name="btn_suite">suivant</string>
+    <string name="titre_tache">titre</string>
+    <string name="descr_logo">logo</string>
+    <string name="descr_icon_user">icone user</string>
+    <string name="descr_icon_mdp">icon mdp</string>
+    <string name="retour">Retour</string>
 </resources>

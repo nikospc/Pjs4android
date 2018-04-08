@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="AppTheme" parent="AppBlankTheme">
         <!-- Customize your theme here. -->
         <!-- Base application thème. -->
@@ -19,5 +20,9 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/grisclair</item>
     </style>
+
+    <style name="ActionModeAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="ActionModeAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

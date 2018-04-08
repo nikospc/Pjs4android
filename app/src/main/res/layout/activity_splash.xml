@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/textitre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/robotobold"
+            android:gravity="center_horizontal"
+            android:text="SUG"
+            android:textAlignment="center"
+            android:textColor="@color/grisclair"
+            android:textSize="55sp" />
+
+        <TextView
+            android:id="@+id/textsstitre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textitre"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/robotoregular"
+            android:gravity="center_horizontal"
+            android:text="Student univ group"
+            android:textAlignment="center"
+            android:textColor="@color/grisclair"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_below="@+id/textsstitre"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
+    </RelativeLayout>
+</RelativeLayout>

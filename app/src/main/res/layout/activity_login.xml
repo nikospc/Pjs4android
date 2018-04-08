@@ -24,15 +24,27 @@
             android:orientation="vertical"
             android:padding="@dimen/activity_horizontal_margin">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotobold"
+            android:text="SUG"
+            android:textAlignment="center"
+            android:textColor="@color/grisclair"
+            android:textSize="55sp" />
 
-            <ImageView
-                android:layout_width="@dimen/logo_w_h"
-                android:layout_height="@dimen/logo_w_h"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="30dp"
-                android:src="@mipmap/ic_launcher" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotoregular"
+            android:text="Student univ group"
+            android:textAlignment="center"
+            android:textColor="@color/grisclair"
+            android:textSize="15sp" />
 
-            <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -107,7 +119,9 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15dp" />
-        </LinearLayout>
+
+
+    </LinearLayout>
 
        <!--> <LinearLayout
             android:id="@+id/email_login_form"

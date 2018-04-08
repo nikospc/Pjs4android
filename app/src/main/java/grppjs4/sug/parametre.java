@@ -1,12 +1,23 @@
 package grppjs4.sug;
 
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -22,12 +33,21 @@ public class parametre extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private TextView textactualiser;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public static final String PREFS_NAME = "save";
+    private String s="ii.ics";
 
     private OnFragmentInteractionListener mListener;
+    private SharedPreferences preflog;
+    private SharedPreferences.Editor editor;
+    private String id="";
+    private TextView textdeco;
+    private TextView textshare;
+    private TextView textprob;
+    private TextView textcondi;
 
     public parametre() {
         // Required empty public constructor
@@ -58,14 +78,120 @@ public class parametre extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        preflog=getContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        editor=preflog.edit();
+        id=preflog.getString("id","");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_parametre, container, false);
+        View r = inflater.inflate(R.layout.fragment_parametre, container, false);
+        textactualiser=r.findViewById(R.id.textactualiser);
+        textactualiser.setOnClickListener(actionactua);
+        textprob=r.findViewById(R.id.textprob);
+        textshare=r.findViewById(R.id.textshare);
+        textdeco=r.findViewById(R.id.textdeco);
+        textcondi = r.findViewById(R.id.textecondi);
+        textcondi.setOnClickListener(condition);
+        textprob.setOnClickListener(email);
+        textshare.setOnClickListener(share);
+        textdeco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    //Toast.makeText(this,"A bientôt",Toast.LENGTH_LONG).show();
+                    editor.remove("id");
+                    editor.putBoolean("islogin",false);
+                    editor.apply();
+                    editor.commit();
+                    File file = new File(getContext().getFilesDir(),s);
+                    if(file.exists()){
+                        file.delete();
+                    }
+                    getActivity().finish();
+                    Intent i=new Intent(getActivity(),LoginActivity.class);
+                    startActivity(i);
+
+            }
+        });
+        return r;
     }
+
+
+    View.OnClickListener actionactua = new View.OnClickListener() {
+        public void onClick(View v) {
+            edtrequete edtrequete =new edtrequete(getContext(),id);
+            edtrequete.execute();        }
+    };
+
+
+    View.OnClickListener share=new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String message = "Telecharge cette appli elle est trop cool: https://play.google.com/store/apps/details?id=grppjs4.sug";
+            Intent share = new Intent(Intent.ACTION_SEND);
+            share.setType("text/plain");
+            share.putExtra(Intent.EXTRA_TEXT, message);
+            startActivity(Intent.createChooser(share, "Où souhaitez vous partager ce bijoux ?"));
+        }
+    };
+
+    View.OnClickListener email=new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String mailto = "mailto:nikolaspaci@gmail.com" +
+                    "?cc=" + "" +
+                    "&subject=Il y a un  problème"+
+                    "&body=" + Uri.encode("Bonjour,");
+
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse(mailto));
+
+            try {
+                startActivity(emailIntent);
+            } catch (ActivityNotFoundException e) {
+                //TODO: Handle case where no email app is available
+            }
+        }
+    };
+
+    View.OnClickListener condition=new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+
+            // set title
+            alertDialogBuilder.setTitle("Conditions et Informations");
+
+            // set dialog message
+            alertDialogBuilder
+                    .setMessage("Application crée par la team SUG, réservé à un usage personnel")
+                    .setCancelable(false)
+                    .setPositiveButton("Fermer",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int id) {
+                            Toast.makeText(getActivity(), "Dialogue fermée ", Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+                    /*.setNegativeButton("CANCEL",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Toast.makeText(getActivity(), "CANCEL button click ", Toast.LENGTH_SHORT).show();
+
+                            dialog.cancel();
+                        }
+                    })*/;
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+        }
+    };
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

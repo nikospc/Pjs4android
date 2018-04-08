@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:id="@+id/fullpage"
+    tools:context="grppjs4.sug.Signup">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="false"
+        android:scrollbars="none">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/titre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/petitformalscript"
+                android:text="@string/titreInscription"
+                android:textAlignment="center"
+                android:textColor="@color/noir"
+                android:textSize="30sp"
+                app:layout_constraintTop_toTopOf="@+id/guidelinedebut" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/inscr1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="55dp"
+                app:layout_constraintTop_toBottomOf="@id/titre">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="30dp"
+                    android:contentDescription="@string/descr_logo"
+                    android:src="@mipmap/ic_launcher" />
+
+                <LinearLayout
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/logo">
+
+                    <EditText
+                        android:id="@+id/txtemail"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/motdepasse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/email">
+
+
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_password"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+
+
+                <Button
+                    android:id="@+id/btn_suite"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="115dp"
+                    android:layout_marginLeft="115dp"
+                    android:layout_marginRight="115dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:onClick="suiteClicked"
+                    android:text="@string/btn_suite"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintTop_toBottomOf="@id/motdepasse" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/incr_fourn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="55dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/titre">
+
+                <LinearLayout
+                    android:id="@+id/nomF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+
+
+                    <EditText
+                        android:id="@+id/txtnom"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_nom"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prenomF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/nomF">
+
+
+                    <EditText
+                        android:id="@+id/txtprenom"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_prenom"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/voieF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/prenomF">
+
+                    <EditText
+                        android:id="@+id/txtVoieF"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="Voie"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/zipCodeF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/voieF">
+
+
+                    <EditText
+                        android:id="@+id/txtZipCode"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="Code Postal"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cityF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/zipCodeF">
+
+
+
+                    <EditText
+                        android:id="@+id/txtCityF"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="Ville"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rayonF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/cityF">
+
+
+
+                    <EditText
+                        android:id="@+id/txtrayon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_rayon"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/telF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/rayonF">
+
+
+
+                    <EditText
+                        android:id="@+id/txttel"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_tel"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/titre_tache"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/petitformalscript"
+                    android:text="@string/titre_tache"
+                    android:textAlignment="center"
+                    android:textColor="@color/noir"
+                    android:textSize="17sp"
+                    app:layout_constraintTop_toBottomOf="@id/telF" />
+
+                <LinearLayout
+                    android:id="@+id/contain_tache"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/titre_tache">
+
+
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/sign_up_button"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginEnd="115dp"
+                    android:layout_marginLeft="115dp"
+                    android:layout_marginRight="115dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/action_sign_in_short"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintTop_toBottomOf="@id/contain_tache" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/incr_dem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="55dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/titre">
+
+                <LinearLayout
+                    android:id="@+id/nomD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+
+
+                    <EditText
+                        android:id="@+id/txtnomD"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_nom"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prenomD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/nomD">
+
+
+                    <EditText
+                        android:id="@+id/txtprenomD"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_prenom"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/CodeEtu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/prenomD">
+
+
+
+                    <EditText
+                        android:id="@+id/txtCodeEtu"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="Code Etudiant"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Pseudo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/CodeEtu">
+
+
+
+                    <EditText
+                        android:id="@+id/txtPseudo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="Pseudo"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/GroupeTD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/Pseudo">
+
+
+                    <EditText
+                        android:id="@+id/txtgroupetd"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="Groupe TD"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+              <!-->  <LinearLayout
+                    android:id="@+id/telD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/Pseudo">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txttelD"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_tel"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout><-->
+
+                <Button
+                    android:id="@+id/sign_up_button2"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginEnd="115dp"
+                    android:layout_marginLeft="115dp"
+                    android:layout_marginRight="115dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/action_sign_in_short"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintTop_toBottomOf="@id/GroupeTD" />
+
+                <Button
+                    android:id="@+id/btnretour"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginEnd="115dp"
+                    android:layout_marginLeft="115dp"
+                    android:layout_marginRight="115dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/retour"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintTop_toBottomOf="@id/sign_up_button2" />
+            </android.support.constraint.ConstraintLayout>
+
+            <!--app:layout_constraintTop_toBottomOf="@id/contain_btn"-->
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone" />
+
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guidelinedebut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.02" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
